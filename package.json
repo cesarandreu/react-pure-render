@@ -2,14 +2,24 @@
   "name": "react-pure-render",
   "version": "1.0.2",
   "description": "A function, a component and a mixin for React pure rendering",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gaearon/react-pure-render.git"
   },
   "scripts": {
-    "build": "./scripts/build",
-    "prepublish": "npm run build"
+    "build": "npm run build:commonjs && npm run build:es",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "clean": "rimraf lib es",
+    "lint": "eslint src",
+    "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "keywords": [
     "react",
@@ -26,8 +36,15 @@
   },
   "homepage": "https://github.com/gaearon/react-pure-render",
   "devDependencies": {
-    "babel": "^5.2.9",
-    "babel-eslint": "^3.0.1",
-    "eslint": "^0.20.0"
+    "babel-cli": "^6.5.1",
+    "babel-eslint": "^5.0.0",
+    "babel-plugin-check-es2015-constants": "^6.5.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.5.0",
+    "babel-plugin-transform-es2015-classes": "^6.5.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.5.2",
+    "cross-env": "^1.0.7",
+    "eslint": "^2.2.0",
+    "eslint-config-rackt": "^1.1.1",
+    "rimraf": "^2.5.2"
   }
 }

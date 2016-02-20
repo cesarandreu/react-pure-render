@@ -1,5 +1,5 @@
-import shouldPureComponentUpdate from './function';
+import shouldPureComponentUpdate from './function'
 
 export default {
   shouldComponentUpdate: shouldPureComponentUpdate
-};
+}

@@ -1,4 +1,17 @@
 {
-  "stage": 0,
-  "loose": ["es6.modules", "es6.classes"]
+  "plugins": [
+    ["transform-es2015-classes", { "loose": true }],
+    "check-es2015-constants",
+    "transform-es2015-block-scoping"
+  ],
+  "env": {
+    "commonjs": {
+      "plugins": [
+        ["transform-es2015-modules-commonjs", { "loose": true }]
+      ]
+    },
+    "es": {
+      "plugins": []
+    }
+  }
 }
